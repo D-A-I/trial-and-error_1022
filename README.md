@@ -10,6 +10,7 @@
 -> OK
 1. MySqlからscaffoldする  
 -> 着手中
+-> 公式のDBプロバイダーはプレリリースらしい。サードパーティ製（Pomelo.EntityFrameworkCore.MySql）の方がいいかも  
 -> メモ..  
 -> @"server=localhost;database=kurumi;userid=developer;pwd=xxxxx;sslmode=none;"
 1. DIで接続文字列を渡す
