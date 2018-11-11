@@ -1,28 +1,32 @@
 # trial-and-error_1022
 ## このアプリの進め方
-### APIクライアント（C#.. vscodeで作成）
+### CRUDコンソールアプリ（C#.. vscodeで作成）
+APIクライアント風に、urlやjsonを渡してCRUDする
 1. MySqlにテーブルを作成する  
 -> char setをutf-8に変えて再作成する  
--> OK
+-> ***OK***
 1. MySqlにデータを投入する  
--> OK
+-> ***OK***
 1. 別プロジェクトを作る  
--> OK
+-> ***OK***
 1. MySqlからscaffoldする  
--> 着手中
--> 公式のDBプロバイダーはプレリリースらしい。サードパーティ製（Pomelo.EntityFrameworkCore.MySql）の方がいいかも  
--> メモ..  
--> @"server=localhost;database=kurumi;userid=developer;pwd=xxxxx;sslmode=none;"
-1. DIで接続文字列を渡す
+-> ***OK***  
+▼▼▼重要▼▼▼  
+-> https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core-scaffold-example.html  
+1. 設定ファイルの読込み／ログ出力..あたりをDIする  
+-> DI用のパッケージ（Microsoft.Extensions.DependencyInjection）をインストールする  
+-> ロギング用のパッケージ（Microsoft.Extensions.Logging）をインストールする
+1. NUnitを導入する
+1. **純粋な** APIクライアントを作成する
 1. 環境構築シェルスクリプトを作る  
-  - 親ディレクトリ名を取得してslnファイルを作る
+  - 親ディレクトリ名を取得してslnファイルを作る。環境をキレイに構築し直す
   - 親ディレクトリ名.Cli フォルダを作成し、"console"（実際はWebかつMVC）テンプレを追加
   - 親ディレクトリ名.Models フォルダを作成し、"classlib"テンプレを追加
   - slnと子csprojを紐付けする
   - Cliプロジェクトにappsettings.json用の各種パッケージを追加  
   参考） https://qiita.com/abpla/items/c4faeed42bef4d450c8d
   - ModelプロジェクトにMySqlからscaffoldしたモデルを追加する  
-  参考） https://qiita.com/takanemu/items/ebca534db398aa9cce34
+  参考） https://qiita.com/takanemu/items/ebca534db398aa9cce34  
 ---
 ## （参考）mysqlについて
 ### mysqlのインストール
