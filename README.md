@@ -13,6 +13,8 @@ APIクライアント風に、urlやjsonを渡してCRUDする
 -> ***OK***  
 ▼▼▼重要▼▼▼  
 -> https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core-scaffold-example.html  
+1. 一般的なEFのCRUDを作る  
+-> 途中｡｡READはできた
 1. 設定ファイルの読込み／ログ出力..あたりをDIする  
 -> DI用のパッケージ（Microsoft.Extensions.DependencyInjection）をインストールする  
 -> ロギング用のパッケージ（Microsoft.Extensions.Logging）をインストールする
