@@ -5,3 +5,6 @@ logs
 # bin／obj
 bin/
 obj/
+
+# 設定ファイル
+appsettings.json

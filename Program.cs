@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -28,12 +30,19 @@ namespace trial_and_error_1022 {
             // IServiceProvider取得
             var provider = serviceCollection.BuildServiceProvider();
 
-            // 登録したインスタンスの利用
+            #region ex. 登録したインスタンスの利用
+            /*
             var config = provider.GetService<IConfigurationRoot>();
             Console.WriteLine(config.GetConnectionString("kurumi"));
+            */
+            #endregion
 
-            /* インターフェースを使用するように変更 */
-            var adorer = new Adorer(config);
+            /* インターフェースを介してDIする */
+            var adorer = provider.GetService<IAdorer>();
+            
+            #region ex. メソッドの戻り値がTaskの場合（Mainにasyncが必要）
+            // var tasks = await Task.Run(() => adorer.GetAll());
+            #endregion
             var tasks = adorer.GetAll();
 
             /* tasksを表示する */
@@ -52,8 +61,11 @@ namespace trial_and_error_1022 {
                 // .AddEnvironmentVariables()
                 .Build();
 
-            // ライフサイクルをSingletonで登録
+            // ConfigurationBuilderのライフサイクルをSingletonにする
             services.AddSingleton(configuration);
+
+            // 自作のDBアクセスクラスを、DIコンテナに登録する
+            services.AddTransient<IAdorer, Adorer>();
         }
     }
 }

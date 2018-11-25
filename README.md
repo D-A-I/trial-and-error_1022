@@ -2,25 +2,19 @@
 ## このアプリの進め方
 ### CRUDコンソールアプリ（C#.. vscodeで作成）
 APIクライアント風に、urlやjsonを渡してCRUDする
-1. MySqlにテーブルを作成する  
--> char setをutf-8に変えて再作成する  
--> ***OK***
-1. MySqlにデータを投入する  
--> ***OK***
-1. 別プロジェクトを作る  
--> ***OK***
-1. MySqlからscaffoldする  
+1. MySqlからscaffoldした別プロジェクトを参照する  
 -> ***OK***  
 ▼▼▼重要▼▼▼  
 -> https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core-scaffold-example.html  
 1. 一般的なEFのCRUDを作る  
--> 途中｡｡READはできた
-1. 設定ファイルの読込み／ログ出力..あたりをDIする  
+-> ***途中｡｡READはできた***
+1. DIを作り込む（設定ファイルの読込み／ログ出力..あたり）  
+-> ***途中***  
 -> DI用のパッケージ（Microsoft.Extensions.DependencyInjection）をインストールする  
--> ロギング用のパッケージ（Microsoft.Extensions.Logging）をインストールする
-1. NUnitを導入する
-1. **純粋な** APIクライアントを作成する
-1. 環境構築シェルスクリプトを作る  
+-> ロギング用のパッケージ（Microsoft.Extensions.Logging）をインストールする.. **log4netは後回し**
+1. （DIを作り込みつつ）NUnitを導入する
+1. **一般的な** APIクライアントを作成する
+1. 環境構築用のシェルスクリプトを作る  
   - 親ディレクトリ名を取得してslnファイルを作る。環境をキレイに構築し直す
   - 親ディレクトリ名.Cli フォルダを作成し、"console"（実際はWebかつMVC）テンプレを追加
   - 親ディレクトリ名.Models フォルダを作成し、"classlib"テンプレを追加
