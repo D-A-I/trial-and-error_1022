@@ -1,19 +1,16 @@
 # trial-and-error_1022
 ## このアプリの進め方
 ### CRUDコンソールアプリ（C#.. vscodeで作成）
-APIクライアント風に、urlやjsonを渡してCRUDする
-1. MySqlからscaffoldした別プロジェクトを参照する  
--> ***OK***  
-▼▼▼重要▼▼▼  
--> https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core-scaffold-example.html  
-1. 一般的なEFのCRUDを作る  
--> ***途中｡｡READはできた***
+APIクライアント風に、urlやjsonを渡してCRUDする。**一旦linuxで作り切る**
+1. 開発環境／本番環境に応じて適切な接続文字列を渡す
 1. DIを作り込む（設定ファイルの読込み／ログ出力..あたり）  
 -> ***途中***  
--> DI用のパッケージ（Microsoft.Extensions.DependencyInjection）をインストールする  
 -> ロギング用のパッケージ（Microsoft.Extensions.Logging）をインストールする.. **log4netは後回し**
-1. （DIを作り込みつつ）NUnitを導入する
-1. **一般的な** APIクライアントを作成する
+1. （DIを作り込みつつ）NUnitを導入する -> xUnitにする  
+-> https://www.slideshare.net/esmsec/xunitmoq
+1. ｘUnit用の拡張属性（jsonFileDataAttribute）を追加する  
+-> https://gist.github.com/leealso/a5173dd157c9be9f1739bf49064a46e9
+1. APIクライアントを作成する
 1. 環境構築用のシェルスクリプトを作る  
   - 親ディレクトリ名を取得してslnファイルを作る。環境をキレイに構築し直す
   - 親ディレクトリ名.Cli フォルダを作成し、"console"（実際はWebかつMVC）テンプレを追加
@@ -65,3 +62,6 @@ $ sudo apt-get purge mysql-client-core-5.5
 $ sudo rm -rf /var/log/mysql
 $ sudo rm -rf /etc/mysql
 ```
+### 参考）EF Coreでmysqlのscaffold
+▼▼▼重要▼▼▼  
+https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core-scaffold-example.html  
