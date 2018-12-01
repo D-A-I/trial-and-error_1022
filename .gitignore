@@ -8,3 +8,4 @@ obj/
 
 # 設定ファイル
 appsettings.json
+appsettings.*.json

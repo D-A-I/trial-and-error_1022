@@ -21,16 +21,17 @@ namespace trial_and_error_1022 {
         /// </remarks>
         /// <param name="args"></param>
         static void Main(string[] args) {
-            // ServiceCollection -> デフォルトのDIコンテナ。AddXXX.. でコンテナへ登録する
+            /* ServiceCollection -> デフォルトのDIコンテナ"ServiceProvider"の素材
+             * Addxxx.. で、DIする必要があるサービスを登録する */
             var serviceCollection = new ServiceCollection();
 
             // DIの準備。環境変数から(Development / Production)を受け取っておく
             ConfigureServices(serviceCollection, Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 
-            // ServiceProviderを作成する
+            // DIコンテナを構築する
             var provider = serviceCollection.BuildServiceProvider();
 
-            // DIコンテナからインスタンスを取り出す
+            // インスタンスを取り出す
             var adorer = provider.GetService<IAdorer>();
 
             #region ex. メソッドの戻り値がTaskの場合（Mainにasyncが必要）
@@ -38,7 +39,7 @@ namespace trial_and_error_1022 {
             #endregion
             var tasks = adorer.GetAll();
 
-            /* tasksを表示する */
+            // tasksを表示する
             tasks.ForEach(x => Console.WriteLine($"{x.GroupId}, {x.GroupName}, {x.TaskId}, {x.Status}, {x.Content}, {x.Pic}, {x.Period}"));
         }
 
@@ -46,9 +47,9 @@ namespace trial_and_error_1022 {
         /// DIの準備
         /// </summary>
         /// <param name="serviceCollection"></param>
-        private static void ConfigureServices(IServiceCollection services, string envName) {
+        public static void ConfigureServices(IServiceCollection services, string envName) {
             
-            /* ### 1. DIコンテナへの登録：プロジェクト共通 ### */
+            /* ### DIコンテナへの登録１：プロジェクト共通 ### */
 
             /**
              * ConfigurationBuilder -> ConfigurationManagerの代替。機能が大幅に増えた
@@ -65,11 +66,11 @@ namespace trial_and_error_1022 {
             // ConfigurationBuilderのライフサイクルをSingletonにする
             services.AddSingleton(configuration);
 
-            /* ### 2. DIコンテナへの登録：プロジェクト毎に可変 ### */
+            /* ### DIコンテナへの登録２：プロジェクト毎に可変の要素 ### */
 
-            // DBアクセスのラッパー
+            // DBアクセスクラス
             services.AddTransient<IAdorer, Adorer>();
-            // DBアクセスクラス(scaffold)
+            // MySqlのContextクラス
             services.AddDbContext<kurumiContext>(opt => opt.UseMySQL(configuration.GetConnectionString("kurumi")));
         }
     }
